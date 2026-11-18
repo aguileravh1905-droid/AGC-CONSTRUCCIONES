@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AGC Construcciones | Sistema de Gestión</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fa;
+            color: #243447;
+            line-height: 1.6;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        nav {
+            background: #0b1f33;
+            color: white;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 7%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .logo-box {
+            width: 42px;
+            height: 42px;
+            background: #f59e0b;
+            color: #0b1f33;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 17px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #ffffff;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #f59e0b;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 580px;
+            background:
+                linear-gradient(rgba(11,31,51,0.92), rgba(16,42,67,0.95)),
+                linear-gradient(135deg, #102a43, #243b53);
+
+            display: flex;
+            align-items: center;
+            padding: 70px 8%;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(245,158,11,0.15);
+            border: 1px solid #f59e0b;
+            color: #f59e0b;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 {
+            font-size: 55px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #f59e0b;
+        }
+
+        .hero p {
+            max-width: 700px;
+            font-size: 18px;
+            color: #d9e2ec;
+            margin-bottom: 32px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: #f59e0b;
+            color: #0b1f33;
+        }
+
+        .btn-primary:hover {
+            background: #d97706;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 1px solid #8da9c4;
+        }
+
+        .btn-secondary:hover {
+            border-color: #f59e0b;
+            color: #f59e0b;
+        }
+
+        /* =========================
+           STATS
+        ========================= */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            max-width: 1100px;
+            margin: -55px auto 0;
+            position: relative;
+            z-index: 2;
+            padding: 0 20px;
+        }
+
+        .stat {
+            background: white;
+            padding: 28px 20px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+            border-right: 1px solid #e5e7eb;
+        }
+
+        .stat:first-child {
+            border-radius: 12px 0 0 12px;
+        }
+
+        .stat:last-child {
+            border-radius: 0 12px 12px 0;
+            border-right: none;
+        }
+
+        .stat h2 {
+            color: #102a43;
+            font-size: 30px;
+        }
+
+        .stat p {
+            color: #66788a;
+            font-size: 14px;
+        }
+
+        /* =========================
+           GENERAL SECTIONS
+        ========================= */
+
+        section {
+            padding: 90px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 34px;
+            color: #102a43;
+            margin-bottom: 12px;
+        }
+
+        .section-title p {
+            color: #66788a;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            color: #102a43;
+            font-size: 34px;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            color: #52606d;
+            margin-bottom: 18px;
+        }
+
+        .about-card {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.07);
+            border-left: 5px solid #f59e0b;
+        }
+
+        .about-card h3 {
+            color: #102a43;
+            margin-bottom: 15px;
+        }
+
+        .about-card ul {
+            list-style: none;
+        }
+
+        .about-card li {
+            margin: 12px 0;
+            color: #52606d;
+        }
+
+        .about-card li::before {
+            content: "✓";
+            color: #f59e0b;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* =========================
+           TECHNOLOGIES
+        ========================= */
+
+        .technologies {
+            background: #eaf0f5;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .tech-card {
+            background: white;
+            padding: 30px 20px;
+            text-align: center;
+            border-radius: 12px;
+            box-shadow: 0 7px 25px rgba(0,0,0,0.05);
+            transition: 0.3s;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .tech-icon {
+            width: 55px;
+            height: 55px;
+            margin: auto auto 15px;
+            border-radius: 50%;
+            background: #102a43;
+            color: #f59e0b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+        }
+
+        .tech-card h3 {
+            color: #102a43;
+            margin-bottom: 8px;
+        }
+
+        .tech-card p {
+            color: #66788a;
+            font-size: 14px;
+        }
+
+        /* =========================
+           DESCARGA
+        ========================= */
+
+        .download-section {
+            background: linear-gradient(135deg, #102a43, #0b1f33);
+            color: white;
+        }
+
+        .download-section .section-title h2 {
+            color: white;
+        }
+
+        .download-section .section-title p {
+            color: #bcccdc;
+        }
+
+        .download-box {
+            max-width: 1050px;
+            margin: auto;
+            background: white;
+            color: #243447;
+            border-radius: 18px;
+            padding: 45px;
+            box-shadow: 0 15px 45px rgba(0,0,0,0.20);
+        }
+
+        .download-box h3 {
+            text-align: center;
+            color: #102a43;
+            font-size: 25px;
+            margin-bottom: 12px;
+        }
+
+        .download-box > p {
+            text-align: center;
+            color: #66788a;
+            margin-bottom: 35px;
+        }
+
+        .download-button-container {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .download-button {
+            display: inline-block;
+            background: #f59e0b;
+            color: #0b1f33;
+            text-decoration: none;
+            padding: 16px 35px;
+            border-radius: 9px;
+            font-weight: bold;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        .download-button:hover {
+            background: #d97706;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(245,158,11,0.25);
+        }
+
+        /* =========================
+           PASOS
+        ========================= */
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .step {
+            display: flex;
+            gap: 20px;
+            background: #f7f9fb;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .step-number {
+            min-width: 45px;
+            height: 45px;
+            background: #102a43;
+            color: #f59e0b;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 17px;
+        }
+
+        .step h4 {
+            color: #102a43;
+            margin-bottom: 8px;
+            font-size: 17px;
+        }
+
+        .step p {
+            color: #52606d;
+            font-size: 14px;
+        }
+
+        .step strong {
+            color: #102a43;
+        }
+
+        /* =========================
+           IMPORTANTE
+        ========================= */
+
+        .important {
+            margin-top: 35px;
+            background: #fff8e6;
+            border-left: 5px solid #f59e0b;
+            padding: 25px;
+            border-radius: 8px;
+        }
+
+        .important h4 {
+            color: #102a43;
+            margin-bottom: 10px;
+        }
+
+        .important p {
+            color: #52606d;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        /* =========================
+           ACCESO DIRECTO
+        ========================= */
+
+        .shortcut-box {
+            margin-top: 35px;
+            background: #eef4f8;
+            border-radius: 12px;
+            padding: 28px;
+        }
+
+        .shortcut-box h4 {
+            color: #102a43;
+            margin-bottom: 10px;
+        }
+
+        .shortcut-box p {
+            color: #52606d;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .shortcut-box ul {
+            margin-left: 20px;
+            color: #52606d;
+        }
+
+        /* =========================
+           LOGIN
+        ========================= */
+
+        .login-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-top: 35px;
+        }
+
+        .role-card {
+            background: #f7f9fb;
+            border: 1px solid #dbe3ea;
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .role-card h4 {
+            color: #102a43;
+            margin-bottom: 10px;
+        }
+
+        .role-card p {
+            color: #52606d;
+            font-size: 14px;
+        }
+
+        .role {
+            display: inline-block;
+            background: #102a43;
+            color: #f59e0b;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: #071726;
+            color: #9fb3c8;
+            text-align: center;
+            padding: 35px 20px;
+        }
+
+        footer .footer-logo {
+            color: white;
+            font-weight: bold;
+            font-size: 19px;
+            margin-bottom: 8px;
+        }
+
+        footer p {
+            font-size: 13px;
+            margin: 5px 0;
+        }
+
+        .gold {
+            color: #f59e0b;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat:first-child {
+                border-radius: 12px 0 0 0;
+            }
+
+            .stat:nth-child(2) {
+                border-radius: 0 12px 0 0;
+            }
+
+            .stat:nth-child(3) {
+                border-radius: 0 0 0 12px;
+            }
+
+            .stat:last-child {
+                border-radius: 0 0 12px 0;
+            }
+
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            .tech-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .login-info {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            nav {
+                padding: 0 20px;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .hero {
+                padding: 55px 25px;
+            }
+
+            .hero h1 {
+                font-size: 35px;
+            }
+
+            section {
+                padding: 65px 25px;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+                margin-top: 0;
+                padding: 20px;
+            }
+
+            .stat,
+            .stat:first-child,
+            .stat:nth-child(2),
+            .stat:nth-child(3),
+            .stat:last-child {
+                border-radius: 10px;
+                border: none;
+                margin-bottom: 10px;
+            }
+
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .download-box {
+                padding: 25px 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav>
+
+    <div class="logo">
+
+        <div class="logo-box">
+            AGC
+        </div>
+
+        <span>
+            AGC Construcciones
+        </span>
+
+    </div>
+
+    <ul>
+
+        <li>
+            <a href="#inicio">Inicio</a>
+        </li>
+
+        <li>
+            <a href="#sistema">Sistema</a>
+        </li>
+
+        <li>
+            <a href="#tecnologias">Tecnologías</a>
+        </li>
+
+        <li>
+            <a href="#descargas">Descargar</a>
+        </li>
+
+    </ul>
+
+</nav>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero" id="inicio">
+
+    <div class="hero-content">
+
+        <span class="badge">
+            SISTEMA DE GESTIÓN DE CONSTRUCCIONES
+        </span>
+
+        <h1>
+            AGC <span>Construcciones</span>
+        </h1>
+
+        <p>
+            Sistema de escritorio desarrollado para facilitar la
+            administración de obras, materiales, inventario y usuarios
+            mediante una interfaz sencilla, moderna y funcional.
+        </p>
+
+        <div class="buttons">
+
+            <a href="#descargas" class="btn btn-primary">
+                Descargar sistema
+            </a>
+
+            <a href="#sistema" class="btn btn-secondary">
+                Conocer el sistema
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     STATS
+========================= -->
+
+<div class="stats">
+
+    <div class="stat">
+        <h2>100%</h2>
+        <p>Aplicación de escritorio</p>
+    </div>
+
+    <div class="stat">
+        <h2>POO</h2>
+        <p>Programación Orientada a Objetos</p>
+    </div>
+
+    <div class="stat">
+        <h2>SQLite</h2>
+        <p>Base de datos local</p>
+    </div>
+
+    <div class="stat">
+        <h2>Windows</h2>
+        <p>Aplicación ejecutable</p>
+    </div>
+
+</div>
+
+
+<!-- =========================
+     SISTEMA
+========================= -->
+
+<section id="sistema">
+
+    <div class="section-title">
+
+        <h2>
+            ¿Qué es AGC Construcciones?
+        </h2>
+
+        <p>
+            Una herramienta diseñada para administrar información
+            relacionada con obras y materiales de construcción.
+        </p>
+
+    </div>
+
+
+    <div class="about">
+
+        <div class="about-text">
+
+            <h2>
+                Gestión sencilla y organizada
+            </h2>
+
+            <p>
+                AGC Construcciones permite gestionar obras y materiales
+                desde una aplicación de escritorio desarrollada en Python.
+            </p>
+
+            <p>
+                El sistema utiliza una base de datos SQLite para almacenar
+                la información de manera local y permitir que los datos
+                permanezcan disponibles al volver a abrir la aplicación.
+            </p>
+
+            <p>
+                También cuenta con diferentes niveles de acceso mediante
+                los roles de Administrador y Supervisor.
+            </p>
+
+        </div>
+
+
+        <div class="about-card">
+
+            <h3>
+                Funciones principales
+            </h3>
+
+            <ul>
+
+                <li>
+                    Registro y administración de obras.
+                </li>
+
+                <li>
+                    Registro y control de materiales.
+                </li>
+
+                <li>
+                    Asignación de materiales a obras.
+                </li>
+
+                <li>
+                    Consulta de información.
+                </li>
+
+                <li>
+                    Control de inventario.
+                </li>
+
+                <li>
+                    Inicio de sesión por usuario y contraseña.
+                </li>
+
+                <li>
+                    Roles de Administrador y Supervisor.
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     TECNOLOGÍAS
+========================= -->
+
+<section class="technologies" id="tecnologias">
+
+    <div class="section-title">
+
+        <h2>
+            Tecnologías utilizadas
+        </h2>
+
+        <p>
+            Herramientas empleadas para el desarrollo y funcionamiento
+            de AGC Construcciones.
+        </p>
+
+    </div>
+
+
+    <div class="tech-grid">
+
+        <div class="tech-card">
+
+            <div class="tech-icon">
+                PY
+            </div>
+
+            <h3>
+                Python
+            </h3>
+
+            <p>
+                Lenguaje utilizado para desarrollar la aplicación.
+            </p>
+
+        </div>
+
+
+        <div class="tech-card">
+
+            <div class="tech-icon">
+                TK
+            </div>
+
+            <h3>
+                Tkinter
+            </h3>
+
+            <p>
+                Biblioteca utilizada para construir la interfaz gráfica.
+            </p>
+
+        </div>
+
+
+        <div class="tech-card">
+
+            <div class="tech-icon">
+                DB
+            </div>
+
+            <h3>
+                SQLite
+            </h3>
+
+            <p>
+                Sistema utilizado para almacenar la información.
+            </p>
+
+        </div>
+
+
+        <div class="tech-card">
+
+            <div class="tech-icon">
+                EXE
+            </div>
+
+            <h3>
+                PyInstaller
+            </h3>
+
+            <p>
+                Utilizado para convertir el programa en un ejecutable.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     DESCARGA
+========================= -->
+
+<section class="download-section" id="descargas">
+
+    <div class="section-title">
+
+        <h2>
+            Descargar AGC Construcciones
+        </h2>
+
+        <p>
+            Sigue los pasos indicados para instalar y comenzar a utilizar
+            el sistema correctamente.
+        </p>
+
+    </div>
+
+
+    <div class="download-box">
+
+        <h3>
+            📦 Descarga e instalación
+        </h3>
+
+        <p>
+            El sistema se encuentra comprimido en un archivo ZIP.
+            Debes descargarlo y extraer su contenido antes de ejecutar
+            la aplicación.
+        </p>
+
+
+        <!-- BOTÓN DE DESCARGA -->
+
+        <div class="download-button-container">
+
+            <a
+                href="AGCConstrucciones.zip"
+                class="download-button"
+                download
+            >
+                ⬇ Descargar AGC Construcciones (.ZIP)
+            </a>
+
+        </div>
+
+
+        <!-- =========================
+             PASOS
+        ========================= -->
+
+        <div class="steps">
+
+
+            <!-- PASO 1 -->
+
+            <div class="step">
+
+                <div class="step-number">
+                    1
+                </div>
+
+                <div>
+
+                    <h4>
+                        Descargar el archivo ZIP
+                    </h4>
+
+                    <p>
+                        Haz clic en el botón
+                        <strong>
+                            "Descargar AGC Construcciones (.ZIP)"
+                        </strong>
+                        para descargar el archivo comprimido en tu computadora.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- PASO 2 -->
+
+            <div class="step">
+
+                <div class="step-number">
+                    2
+                </div>
+
+                <div>
+
+                    <h4>
+                        Extraer el archivo
+                    </h4>
+
+                    <p>
+                        Una vez descargado el ZIP, haz clic derecho sobre
+                        el archivo y selecciona
+                        <strong>
+                            "Extraer todo..."
+                        </strong>
+                        o utiliza la opción disponible en tu computadora.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- PASO 3 -->
+
+            <div class="step">
+
+                <div class="step-number">
+                    3
+                </div>
+
+                <div>
+
+                    <h4>
+                        Abrir la carpeta extraída
+                    </h4>
+
+                    <p>
+                        Entra a la carpeta que se creó después de extraer
+                        el archivo ZIP. Dentro encontrarás los archivos
+                        necesarios para utilizar AGC Construcciones.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- PASO 4 -->
+
+            <div class="step">
+
+                <div class="step-number">
+                    4
+                </div>
+
+                <div>
+
+                    <h4>
+                        Ejecutar AGCConstrucciones.exe
+                    </h4>
+
+                    <p>
+                        Busca el archivo
+                        <strong>
+                            AGCConstrucciones.exe
+                        </strong>
+                        y haz doble clic sobre él para iniciar el sistema.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- PASO 5 -->
+
+            <div class="step">
+
+                <div class="step-number">
+                    5
+                </div>
+
+                <div>
+
+                    <h4>
+                        Crear un acceso directo
+                    </h4>
+
+                    <p>
+                        Para acceder más fácilmente al programa,
+                        puedes crear un acceso directo de
+                        <strong>
+                            AGCConstrucciones.exe
+                        </strong>
+                        en tu escritorio.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- PASO 6 -->
+
+            <div class="step">
+
+                <div class="step-number">
+                    6
+                </div>
+
+                <div>
+
+                    <h4>
+                        También puedes fijarlo
+                    </h4>
+
+                    <p>
+                        Después de abrir el programa, puedes fijarlo a la
+                        <strong>
+                            barra de tareas
+                        </strong>
+                        para tener un acceso rápido cada vez que quieras
+                        utilizar AGC Construcciones.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             ACCESO DIRECTO
+        ========================= -->
+
+        <div class="shortcut-box">
+
+            <h4>
+                💻 Recomendación para acceder más rápido
+            </h4>
+
+            <p>
+                Después de extraer el programa, puedes crear un acceso
+                directo en tu escritorio:
+            </p>
+
+            <ul>
+
+                <li>
+                    Haz clic derecho sobre
+                    <strong>AGCConstrucciones.exe</strong>.
+                </li>
+
+                <li>
+                    Selecciona
+                    <strong>"Enviar a → Escritorio (crear acceso directo)"</strong>.
+                </li>
+
+                <li>
+                    También puedes fijar el programa a la
+                    <strong>barra de tareas</strong>.
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <!-- =========================
+             PRIMER INICIO
+        ========================= -->
+
+        <div class="important">
+
+            <h4>
+                ⚠️ Importante: primer inicio del sistema
+            </h4>
+
+            <p>
+                Como la aplicación se entrega nueva, la primera vez que
+                abras AGC Construcciones será necesario registrar los
+                usuarios iniciales.
+            </p>
+
+            <p>
+                Deberás registrar un usuario con el rol de
+                <strong>Administrador</strong>
+                y un usuario con el rol de
+                <strong>Supervisor</strong>.
+            </p>
+
+            <p>
+                <strong>
+                    Recuerda muy bien los nombres de usuario y las
+                    contraseñas que registres.
+                </strong>
+                Si no recuerdas estos datos, no podrás iniciar sesión
+                posteriormente.
+            </p>
+
+        </div>
+
+
+        <!-- =========================
+             ROLES
+        ========================= -->
+
+        <div class="login-info">
+
+            <div class="role-card">
+
+                <span class="role">
+                    ADMINISTRADOR
+                </span>
+
+                <h4>
+                    Usuario Administrador
+                </h4>
+
+                <p>
+                    Durante el primer inicio deberás registrar los datos
+                    correspondientes a un usuario Administrador.
+                    Este usuario tendrá los permisos administrativos
+                    establecidos por el sistema.
+                </p>
+
+            </div>
+
+
+            <div class="role-card">
+
+                <span class="role">
+                    SUPERVISOR
+                </span>
+
+                <h4>
+                    Usuario Supervisor
+                </h4>
+
+                <p>
+                    También deberás registrar un usuario Supervisor.
+                    Este usuario podrá utilizar las funciones permitidas
+                    de acuerdo con su rol.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- =========================
+             INICIOS POSTERIORES
+        ========================= -->
+
+        <div class="important">
+
+            <h4>
+                🔐 Inicios de sesión posteriores
+            </h4>
+
+            <p>
+                Una vez que hayas registrado tus usuarios, cada vez que
+                cierres AGC Construcciones y vuelvas a abrir el programa,
+                deberás iniciar sesión.
+            </p>
+
+            <p>
+                Para ingresar tendrás que utilizar el
+                <strong>
+                    usuario y la contraseña
+                </strong>
+                que registraste anteriormente.
+            </p>
+
+            <p>
+                Por seguridad, conserva estos datos en un lugar seguro
+                y evita compartir tus contraseñas.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div class="footer-logo">
+        AGC <span class="gold">Construcciones</span>
+    </div>
+
+    <p>
+        Sistema de gestión de obras y materiales.
+    </p>
+
+    <p>
+        Desarrollado con Python, Tkinter y SQLite.
+    </p>
+
+    <p>
+        © 2026 AGC Construcciones
+    </p>
+
+</footer>
+
+
+</body>
+</html>
